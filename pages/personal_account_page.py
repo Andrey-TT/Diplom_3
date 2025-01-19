@@ -1,9 +1,13 @@
-import data
 import allure
+import data
 from pages.base_page import BasePage
 from locators.personal_account_locators import PersonalAccountLocators
 
 class PersonalAccountPage(BasePage):
+
+    @allure.step("Нажатие на логотип Стеллар бургерс")
+    def click_logo(self):
+        self.click_by_script(PersonalAccountLocators.STELLAR_LOGO)
 
     @allure.step("Нажатие на кнопку Личный кабинет")
     def click_personal_acc_btn(self):
@@ -12,14 +16,6 @@ class PersonalAccountPage(BasePage):
     @allure.step("Нажатие на кнопку История заказов")
     def click_order_history_btn(self):
         self.click_by_script(PersonalAccountLocators.ORDER_HISTORY)
-
-    @allure.step("Нажатие на логотип Стеллар бургерс")
-    def click_logo(self):
-        self.click_by_script(PersonalAccountLocators.STELLAR_LOGO)
-
-    @allure.step("Нажатие на кнопку Выход")
-    def click_logout_btn(self):
-        self.click_by_script(PersonalAccountLocators.LOGOUT_BTN)
 
     @allure.step("Получение списка заказов")
     def get_order_list(self):
@@ -34,6 +30,10 @@ class PersonalAccountPage(BasePage):
     @allure.step("Проверка наполнености списка заказов")
     def check_found_lst_is_not_empty(self):
         assert self.get_order_list() != 0
+
+    @allure.step("Нажатие на кнопку Выход")
+    def click_logout_btn(self):
+        self.click_by_script(PersonalAccountLocators.LOGOUT_BTN)
 
     @allure.step("Проверка выхода из личного кабинета")
     def check_logout_successfully(self):

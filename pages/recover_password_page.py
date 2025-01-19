@@ -1,5 +1,5 @@
-import data
 import allure
+import data
 from pages.base_page import BasePage
 from selenium.webdriver.support import expected_conditions as EC
 from locators.recover_password_locators import RecoverPasswordLocators
