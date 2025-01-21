@@ -1,6 +1,5 @@
 import allure
 import data as dt
-from locators.personal_account_locators import PersonalAccountLocators
 
 class TestPersonalAccountPage:
 
