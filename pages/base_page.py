@@ -15,10 +15,6 @@ class BasePage:
     def find_elements(self, locator, condition=EC.visibility_of_any_elements_located, time=10):
         return WebDriverWait(self.driver, time).until(condition(locator))
 
-    def find_element_by_text(self, text, time=10):
-        return WebDriverWait(self.driver, time).until(EC.visibility_of_element_located(
-            (By.XPATH, f'//p[contains(text(), "{text}")]')))
-
     def open_page(self, url):
         self.driver.get(url)
 
