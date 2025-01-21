@@ -23,8 +23,6 @@ class TapeOrdersPage(BasePage):
     @allure.step("Проверка появления нового заказа в ленте заказов")
     def check_created_order_has_in_tape(self):
         first_order_id = self.get_text(TapeOrdersLocators.ORDER_ID)
-        print(first_order_id)
-        print(self.id)
         assert f'#0{self.id}' == first_order_id, f'#{self.id} != {first_order_id}'
 
     @allure.step("Получение списка заказов в работе")
@@ -44,11 +42,6 @@ class TapeOrdersPage(BasePage):
         if list_elem:
             last_order_id = list_elem[-1].text
             return last_order_id
-        else:
-           print("Список <li> пуст или не найден.")
-
-        print(last_order_id)
-        print(self.id)
         assert f'#0{self.id}' == last_order_id, f'#0{self.id} != {last_order_id}'
 
     @allure.step("Проверка, что модальное окно с описанием заказа открыто")
