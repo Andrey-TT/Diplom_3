@@ -4,8 +4,8 @@ import data as dt
 
 class TestConstructorPage:
 
-    @pytest.mark.parametrize('tab, url', [('Конструктор', dt.BASE_URL),
-                                          ('Лента Заказов', dt.FEED_URL)])
+    @pytest.mark.parametrize('tab, url', [(dt.header_1, dt.BASE_URL),
+                                          (dt.header_2, dt.FEED_URL)])
     @allure.title("Тест перехода по кнопкам в хедере")
     def test_transition_pages(self, constructor_page, tab, url):
         constructor_page.open_page(dt.LOGIN_URL)

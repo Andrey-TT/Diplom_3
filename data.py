@@ -7,3 +7,10 @@ FEED_URL = f'{BASE_URL}feed'
 
 email = 'tutunnikov_12@yandex.ru'
 password = '89054743882'
+
+header_1 = 'Конструктор'
+header_2 = 'Лента Заказов'
+compound_title = 'Cостав'
+order_in_works_done = 'Все текущие заказы готовы!'
+description_title_ingredient = 'Детали ингредиента'
+order_status_started = 'Ваш заказ начали готовить'

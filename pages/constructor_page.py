@@ -1,4 +1,5 @@
 import allure
+import data as dt
 from selenium.webdriver.support import expected_conditions as EC
 from locators.constructor_locators import ConstructorLocators
 from locators.tape_orders_locators import TapeOrdersLocators
@@ -21,7 +22,7 @@ class ConstructorPage(BasePage):
     @allure.step("Проверка открытия модального окна булки")
     def check_modal_window_details_displayed(self):
         self.click_to_bun()
-        assert self.get_text(ConstructorLocators.DESCRIPTION_TITLE) == 'Детали ингредиента'
+        assert self.get_text(ConstructorLocators.DESCRIPTION_TITLE) == dt.description_title_ingredient
 
     @allure.step("Проверка закрытия модального окна булки")
     def check_modal_window_closed(self):
@@ -48,13 +49,13 @@ class ConstructorPage(BasePage):
 
     @allure.step("Проверка формирования заказа")
     def check_create_order(self):
-        assert self.get_text(ConstructorLocators.ORDER_STATUS) == 'Ваш заказ начали готовить'
+        assert self.get_text(ConstructorLocators.ORDER_STATUS) == dt.order_status_started
 
     @allure.step("Проверка перехода по кнопкам Конструктор или Лента заказов")
     def check_redirect_nav_tab(self, url, elem):
-        if elem == 'Конструктор':
+        if elem == dt.header_1:
             self.click_constructor_btn()
             self.check_redirect_page(url, ConstructorLocators.CONSTRUCTOR_TITLE)
-        if elem == 'Лента Заказов':
+        if elem == dt.header_2:
             self.click_tape_orders_btn()
             self.check_redirect_page(url, TapeOrdersLocators.ORDERS_TAPE_TITLE)

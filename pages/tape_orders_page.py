@@ -1,4 +1,5 @@
 import allure
+import data as dt
 from locators.tape_orders_locators import TapeOrdersLocators
 from locators.constructor_locators import ConstructorLocators
 from locators.personal_account_locators import PersonalAccountLocators
@@ -16,8 +17,11 @@ class TapeOrdersPage(BasePage):
 
     @allure.step("Получение ID нового заказа")
     def get_order_id(self):
-        self.wait_change_value_in_element_page(ConstructorLocators.ORDER_ID, '9999')
-        self.id = self.get_text(ConstructorLocators.ORDER_ID)
+        if self.get_text(ConstructorLocators.ORDER_ID) == '9999':
+            self.wait_change_value_in_element_page(ConstructorLocators.ORDER_ID, '9999')
+            self.id = self.get_text(ConstructorLocators.ORDER_ID)
+        else:
+            self.id = self.get_text(ConstructorLocators.ORDER_ID)
         return self.id
 
     @allure.step("Проверка появления нового заказа в ленте заказов")
@@ -27,7 +31,7 @@ class TapeOrdersPage(BasePage):
 
     @allure.step("Получение списка заказов в работе")
     def get_order_in_work(self):
-        self.wait_change_value_in_element_page(TapeOrdersLocators.ORDER_IN_WORKS, 'Все текущие заказы готовы!', 30)
+        self.wait_change_value_in_element_page(TapeOrdersLocators.ORDER_IN_WORKS, dt.order_in_works_done, 30)
         order_id = self.get_text(TapeOrdersLocators.ORDER_IN_WORKS)
         return order_id
 
@@ -46,7 +50,7 @@ class TapeOrdersPage(BasePage):
 
     @allure.step("Проверка, что модальное окно с описанием заказа открыто")
     def check_modal_window_order_displayed(self):
-        assert self.get_text(TapeOrdersLocators.COMPOUND_TITLE) == 'Cостав'
+        assert self.get_text(TapeOrdersLocators.COMPOUND_TITLE) == dt.compound_title
 
     @allure.step("Получения количества заказов за сегодня")
     def get_current_count_today(self):
