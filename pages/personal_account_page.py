@@ -1,7 +1,5 @@
-import time
-
 import allure
-import data
+import data as dt
 from pages.base_page import BasePage
 from locators.personal_account_locators import PersonalAccountLocators
 
@@ -27,7 +25,6 @@ class PersonalAccountPage(BasePage):
     @allure.step("Скрол до последнего заказа")
     def scroll_to_last_order(self):
         self.scroll_to_element(PersonalAccountLocators.ORDER_LIST)
-        time.sleep(3)
 
     @allure.step("Проверка наполнености списка заказов")
     def check_found_lst_is_not_empty(self):
@@ -39,5 +36,9 @@ class PersonalAccountPage(BasePage):
 
     @allure.step("Проверка выхода из личного кабинета")
     def check_logout_successfully(self):
-        self.check_url(data.LOGIN_URL)
+        self.check_url(dt.LOGIN_URL)
         assert self.find_element(PersonalAccountLocators.LOGIN_ACC).is_displayed()
+
+    @allure.step("Проверка открытия страницы личного кабинета")
+    def check_redirect_personal_acc(self):
+        self.check_redirect_page(dt.PROFILE_URL, PersonalAccountLocators.PROFILE_PAGE_DESCRIPTION)

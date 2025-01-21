@@ -9,7 +9,7 @@ class TestPersonalAccountPage:
         personal_acc_page.open_page(dt.BASE_URL)
         login_page.authorization(dt.email, dt.password)
         personal_acc_page.click_personal_acc_btn()
-        personal_acc_page.check_redirect_page(dt.PROFILE_URL, PersonalAccountLocators.PROFILE_PAGE_DESCRIPTION)
+        personal_acc_page.check_redirect_personal_acc()
 
     @allure.title("Тест получения истории заказов")
     def test_open_orders_history(self, personal_acc_page, login_page):
