@@ -55,11 +55,3 @@ class ConstructorPage(BasePage):
         if elem == 'Лента Заказов':
             self.click_tape_orders_btn()
             self.check_redirect_page(url, TapeOrdersLocators.ORDERS_TAPE_TITLE)
-
-
-
-
-
-
-
-
