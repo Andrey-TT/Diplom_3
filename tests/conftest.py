@@ -17,24 +17,24 @@ def driver(request):
 @pytest.fixture()
 def recover_password_page(driver):
     page = RecoverPasswordPage(driver, dt.LOGIN_URL)
-    yield page
+    return page
 
 @pytest.fixture()
 def personal_acc_page(driver):
     page = PersonalAccountPage(driver, dt.BASE_URL)
-    yield page
+    return page
 
 @pytest.fixture()
 def constructor_page(driver):
     page = ConstructorPage(driver, dt.BASE_URL)
-    yield page
+    return page
 
 @pytest.fixture()
 def tape_orders_page(driver):
     page = TapeOrdersPage(driver, dt.BASE_URL)
-    yield page
+    return page
 
 @pytest.fixture()
 def login_page(driver):
     page = LoginPage(driver, dt.BASE_URL)
-    yield page
+    return page
