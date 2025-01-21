@@ -1,4 +1,3 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -49,3 +48,7 @@ class BasePage:
     def check_redirect_page(self, url, locator):
         self.check_url(url)
         assert self.find_element(locator, condition=EC.visibility_of_element_located).is_displayed()
+
+    def scroll_to_element(self, locator):
+        element = self.find_element(locator)
+        self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;", element)

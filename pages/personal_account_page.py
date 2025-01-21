@@ -1,3 +1,5 @@
+import time
+
 import allure
 import data
 from pages.base_page import BasePage
@@ -24,8 +26,8 @@ class PersonalAccountPage(BasePage):
 
     @allure.step("Скрол до последнего заказа")
     def scroll_to_last_order(self):
-        scrollable_lst = self.find_element(PersonalAccountLocators.ORDER_LIST)
-        self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;", scrollable_lst)
+        self.scroll_to_element(PersonalAccountLocators.ORDER_LIST)
+        time.sleep(3)
 
     @allure.step("Проверка наполнености списка заказов")
     def check_found_lst_is_not_empty(self):
