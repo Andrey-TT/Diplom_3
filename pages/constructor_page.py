@@ -39,29 +39,7 @@ class ConstructorPage(BasePage):
 
     @allure.step("Добавление булки в заказ")
     def add_buns(self):
-        ingredient = self.find_element(ConstructorLocators.BUNS)
-        basket_lst = self.find_element(ConstructorLocators.BASKET)
-        self.driver.execute_script(
-            """
-            const source = arguments[0];
-            const target = arguments[1];
-
-            const dataTransfer = new DataTransfer();
-            const dragStartEvent = new DragEvent('dragstart', { bubbles: true, cancelable: true, dataTransfer });
-            source.dispatchEvent(dragStartEvent);
-
-            const dragOverEvent = new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer });
-            target.dispatchEvent(dragOverEvent);
-
-            const dropEvent = new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer });
-            target.dispatchEvent(dropEvent);
-
-            const dragEndEvent = new DragEvent('dragend', { bubbles: true, cancelable: true, dataTransfer });
-            source.dispatchEvent(dragEndEvent);
-            """,
-            ingredient,
-            basket_lst
-        )
+        self.move_the_element(ConstructorLocators.BUNS, ConstructorLocators.BASKET)
         assert self.get_text(ConstructorLocators.BUNS_COUNTER) == '2', f'Фактический результат {self.get_text(ConstructorLocators.BUNS_COUNTER)}'
 
     @allure.step("Формирование заказа")
@@ -77,3 +55,11 @@ class ConstructorPage(BasePage):
         if elem == 'Лента Заказов':
             self.click_tape_orders_btn()
             self.check_redirect_page(url, TapeOrdersLocators.ORDERS_TAPE_TITLE)
+
+
+
+
+
+
+
+

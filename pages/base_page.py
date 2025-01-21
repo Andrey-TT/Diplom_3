@@ -1,5 +1,9 @@
+import time
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+#from selenium.webdriver import ActionChains
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.common.exceptions import TimeoutException
 
 class BasePage:
@@ -52,3 +56,25 @@ class BasePage:
     def scroll_to_element(self, locator):
         element = self.find_element(locator)
         self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;", element)
+
+    def move_the_element(self, locator_element, locator_target):
+        element = self.find_element(locator_element)
+        target = self.find_element(locator_target)
+        self.driver.execute_script(
+            """
+            const source = arguments[0];
+            const target = arguments[1];
+
+            const dataTransfer = new DataTransfer();
+            const dragStartEvent = new DragEvent('dragstart', { bubbles: true, cancelable: true, dataTransfer });
+            source.dispatchEvent(dragStartEvent);
+
+            const dragOverEvent = new DragEvent('dragover', { bubbles: true, cancelable: true, dataTransfer });
+            target.dispatchEvent(dragOverEvent);
+
+            const dropEvent = new DragEvent('drop', { bubbles: true, cancelable: true, dataTransfer });
+            target.dispatchEvent(dropEvent);
+
+            const dragEndEvent = new DragEvent('dragend', { bubbles: true, cancelable: true, dataTransfer });
+            source.dispatchEvent(dragEndEvent);
+            """, element, target)
