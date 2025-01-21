@@ -38,4 +38,4 @@ class PersonalAccountPage(BasePage):
     @allure.step("Проверка выхода из личного кабинета")
     def check_logout_successfully(self):
         self.check_url(data.LOGIN_URL)
-        assert self.find_element(PersonalAccountLocators.LOGIN_ACC).is_displayed() == True
+        assert self.find_element(PersonalAccountLocators.LOGIN_ACC).is_displayed()
