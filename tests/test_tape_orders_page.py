@@ -10,7 +10,8 @@ class TestTapeOrderPage:
         constructor_page.click_tape_orders_btn()
         tape_orders_page.open_first_order()
         tape_orders_page.check_modal_window_order_displayed()
-        constructor_page.check_modal_window_closed()
+        constructor_page.close_modal_window()
+        tape_orders_page.check_modal_window_order_closed()
 
     @allure.title("Тест наличия заказов пользователя на странице «Лента заказов» из раздела «История заказов»")
     def test_user_orders_display_in_order_feed(self, tape_orders_page, login_page, constructor_page, personal_acc_page):

@@ -1,5 +1,6 @@
 import allure
 import data as dt
+from selenium.webdriver.support import expected_conditions as EC
 from locators.tape_orders_locators import TapeOrdersLocators
 from locators.constructor_locators import ConstructorLocators
 from locators.personal_account_locators import PersonalAccountLocators
@@ -68,3 +69,7 @@ class TapeOrdersPage(BasePage):
         current_count_today = self.get_text(TapeOrdersLocators.COUNT_TODAY)
         assert (int(self.initial_count_today) < int(current_count_today)) and (int(self.initial_count_all_times) < int(current_count_all_times)),\
         f'{self.initial_count_today} !< {current_count_today}, {self.initial_count_all_times} !< {current_count_all_times})'
+
+    @allure.step("Проверка закрытия модального окна заказа")
+    def check_modal_window_order_closed(self):
+        assert self.find_element(TapeOrdersLocators.COMPOUND_TITLE, condition=EC.invisibility_of_element)
