@@ -48,4 +48,4 @@ class BasePage:
 
     def check_redirect_page(self, url, locator):
         self.check_url(url)
-        assert self.find_element(locator, condition=EC.visibility_of_element_located).is_displayed() == True
+        assert self.find_element(locator, condition=EC.visibility_of_element_located).is_displayed()
