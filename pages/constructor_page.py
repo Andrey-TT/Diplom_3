@@ -31,7 +31,6 @@ class ConstructorPage(BasePage):
     @allure.step("Нажатие на кнопку Оформить заказ")
     def click_create_order_btn(self):
         self.click_by_script(ConstructorLocators.CREATE_ORDER_BTN)
-        assert self.get_text(ConstructorLocators.ORDER_STATUS) == 'Ваш заказ начали готовить'
 
     @allure.step("Закрытие модального окна")
     def close_modal_window(self):
@@ -46,6 +45,10 @@ class ConstructorPage(BasePage):
     def create_order(self):
         self.add_buns()
         self.click_create_order_btn()
+
+    @allure.step("Проверка формирования заказа")
+    def check_create_order(self):
+        assert self.get_text(ConstructorLocators.ORDER_STATUS) == 'Ваш заказ начали готовить'
 
     @allure.step("Проверка перехода по кнопкам Конструктор или Лента заказов")
     def check_redirect_nav_tab(self, url, elem):

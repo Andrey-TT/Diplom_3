@@ -18,9 +18,9 @@ class TestConstructorPage:
     #     constructor_page.check_modal_window_closed()
 
     @allure.title("Тест создания заказа авторизованным пользователем")
-    def test_authorization_user_can_create_order(self, constructor_page, login_page, tape_orders_page):
+    def test_authorization_user_can_create_order(self, constructor_page, login_page):
         constructor_page.open_page(dt.BASE_URL)
         login_page.authorization(dt.email, dt.password)
         constructor_page.click_constructor_btn()
         constructor_page.create_order()
-        tape_orders_page.check_created_order_has_in_work
+        constructor_page.check_create_order()
