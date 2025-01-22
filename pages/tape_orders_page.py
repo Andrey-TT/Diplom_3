@@ -32,7 +32,8 @@ class TapeOrdersPage(BasePage):
 
     @allure.step("Получение списка заказов в работе")
     def get_order_in_work(self):
-        self.wait_change_value_in_element_page(TapeOrdersLocators.ORDER_IN_WORKS, dt.order_in_works_done, 30)
+        while self.get_text(TapeOrdersLocators.ORDER_IN_WORKS) == dt.order_in_works_done:
+            self.wait_change_value_in_element_page(TapeOrdersLocators.ORDER_IN_WORKS, dt.order_in_works_done, 30)
         order_id = self.get_text(TapeOrdersLocators.ORDER_IN_WORKS)
         return order_id
 
